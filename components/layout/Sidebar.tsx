@@ -2,9 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Kanban, User, FileBarChart, Settings, Menu } from "lucide-react";
+import {
+  LayoutDashboard,
+  Kanban,
+  User,
+  FileBarChart,
+  Settings,
+  Menu,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import Image from "next/image";
+import logoSrc from "@/images/logo.png";
 
 const navItems = [
   { name: "Board", href: "/", icon: LayoutDashboard },
@@ -36,7 +45,13 @@ export function Sidebar() {
         )}
       >
         <div className="flex items-center justify-center h-16 border-b border-indigo-900/30 bg-[#0F172A]">
-          <h1 className="text-xl font-bold text-white tracking-wider">SOC_PMS</h1>
+          <Image
+            src={logoSrc}
+            alt="회사 로고"
+            width={150}
+            height={40}
+            priority // 로고는 LCP 성능을 위해 priority 속성 권장
+          />
         </div>
 
         <nav className="flex flex-col p-4 space-y-2">
