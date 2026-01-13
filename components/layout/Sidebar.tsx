@@ -16,7 +16,7 @@ import Image from "next/image";
 import logoSrc from "@/images/logo.png";
 
 const navItems = [
-  { name: "Board", href: "/", icon: LayoutDashboard },
+  { name: "Board", href: "/board", icon: LayoutDashboard },
   { name: "PMO", href: "/pmo", icon: Kanban },
   { name: "Report", href: "/report", icon: FileBarChart },
   { name: "Member", href: "/member", icon: User },
