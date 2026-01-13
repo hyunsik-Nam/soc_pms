@@ -12,11 +12,14 @@ import { FilterChip } from "@/components/ui/FilterChip";
 import { Textarea } from "@/components/ui/Textarea";
 import { ProjectCard, ProjectData } from "@/components/ui/ProjectCard";
 import { DataTable, Column } from "@/components/ui/DataTable";
+import { Pagination } from "@/components/ui/Pagination";
 
 export default function ReportPage() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  
+  const [page, setPage] = useState(1);
+  const totalPages = 37;
+
   // Dummy data for examples
   const testProjects: ProjectData[] = [
     {
@@ -55,13 +58,13 @@ export default function ReportPage() {
   return (
     <div className="flex flex-col gap-4 p-4 sm:ml-64">
       <h1 className="text-2xl font-bold">UI Components Test</h1>
-      
+
       {/* Existing Components... logic kept, just adding specific implementations below if re-rendering whole file or specific sections. Since I am replacing the whole file content effectively or large chunks, I will reproduce the existing parts briefly or just append. Wait, I should replace specific parts? No, the user wants me to ADD to the page. 
       The Instruction says "EndLine: 58". I will replace the whole file content to be safe and ensure everything is there, reusing the existing parts from the viewed file. */}
-      
+
       <div className="flex gap-4 items-end mb-8">
         <div className="w-32">
-          <SelectBox label="SelectBox" options={[{label: "Option 1", value: "1"}]} />
+          <SelectBox label="SelectBox" options={[{ label: "Option 1", value: "1" }]} />
         </div>
         <Button>Button</Button>
       </div>
@@ -99,14 +102,14 @@ export default function ReportPage() {
           <div className="flex gap-4">
             <FilterChip label="Inactive Chip" />
             <FilterChip label="Active Chip" isActive={true} />
-            <FilterChip 
-              label="Open BottomSheet(모바일 크기에서만 보임)" 
+            <FilterChip
+              label="Open BottomSheet(모바일 크기에서만 보임)"
               isActive={isSheetOpen}
               onClick={() => setIsSheetOpen(true)}
             />
           </div>
-          <BottomSheet 
-            isOpen={isSheetOpen} 
+          <BottomSheet
+            isOpen={isSheetOpen}
             onClose={() => setIsSheetOpen(false)}
             title="Bottom Sheet Example"
           >
@@ -136,11 +139,32 @@ export default function ReportPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-semibold">DataTable (Desktop View)</h2>
-          <DataTable 
-            columns={columns} 
-            data={testProjects} 
+          <DataTable
+            columns={columns}
+            data={testProjects}
           />
         </section>
+
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Pagination</h2>
+
+          <div className="border rounded-md p-6 bg-white space-y-4">
+            {/* 현재 페이지 표시 */}
+            <div className="text-sm text-gray-600">
+              현재 페이지: <span className="font-semibold">{page}</span> / {totalPages}
+            </div>
+
+            {/* Pagination 컴포넌트 */}
+            <Pagination
+              currentPage={page}
+              totalPages={totalPages}
+              onPageChange={(p) => setPage(p)}
+            />
+          </div>
+        </section>
+
+
       </div>
     </div>
   );
